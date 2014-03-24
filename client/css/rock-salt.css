@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Rock Salt';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Rock Salt'), local('RockSalt'), url(/css/fonts/rock-salt.woff) format('woff');
+}
