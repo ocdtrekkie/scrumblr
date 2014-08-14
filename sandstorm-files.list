@@ -225,6 +225,7 @@ node_modules/socket.io/node_modules/socket.io-client/node_modules/uglify-js/pack
 node_modules/socket.io/node_modules/socket.io-client/node_modules/uglify-js/uglify-js.js
 node_modules/socket.io/node_modules/socket.io-client/package.json
 node_modules/socket.io/package.json
+redis.conf
 run.sh
 run/resolvconf/resolv.conf
 sandstorm-http-bridge
