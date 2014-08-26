@@ -6,7 +6,11 @@ bin/dash
 bin/sh
 client/css/bg/concrete_wall_2_2.png
 client/css/bigcards.css
+client/css/covered-by-your-grace.css
+client/css/fonts/coveredbyyourgrace.woff
+client/css/fonts/rock-salt.woff
 client/css/images/ui-icons_222222_256x240.png
+client/css/rock-salt.css
 client/css/scribbles2.png
 client/css/style.css
 client/images/ajax-loader.gif
