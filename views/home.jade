@@ -15,11 +15,11 @@ body
 	div.board-outline
 		div#board
 			div#board-doodles
-		
-			
+
+
 			table#board-table.board-table
 				tr
-					td 
+					td
 						h1.home scrumblr.
 						form.home(onsubmit="return go();")
 							label name your new board:
@@ -31,27 +31,26 @@ body
 						p.home!= '<a href="http://' + locals.url + '/demo">' + locals.url + '/demo</a>'
 						<br><br><br>
 						p.home.small sourcecode at <a href="https://github.com/aliasaria/scrumblr">github</a>
-				
+
 	div.stickers
 		div.sticker#sticker-red
-			image(src="/images/stickers/sticker-red.png")
 		div.sticker#sticker-blue
-			image(src="/images/stickers/sticker-blue.png")
 		div.sticker#sticker-yellow
-			image(src="/images/stickers/sticker-yellow.png")
 		div.sticker#sticker-green
-			image(src="/images/stickers/sticker-green.png")
+		br
+		div.sticker#sticker-pink
+		div.sticker#sticker-lightblue
+		div.sticker#sticker-orange
+		div.sticker#sticker-purple
+		br
 		div.sticker#sticker-gold
-			image(src="/images/stickers/sticker-gold.png")
 		div.sticker#sticker-bluestar
-			image(src="/images/stickers/sticker-bluestar.png")
-		div.sticker#sticker-redstar
-			image(src="/images/stickers/sticker-redstar.png")
 		div.sticker#sticker-silverstar
-			image(src="/images/stickers/sticker-silverstar.png")
+		div.sticker#sticker-redstar
 
 
 	//display # of active users here
+	div.active-connections= "connections: " + connected
 
 	//<div style="width: 980px; height: 450px; border: solid 2px; opacity:.1; margin-top: 100px"> this will be the backlog that only appears on drag or perhaps not at all</div>
 
