@@ -1,39 +1,40 @@
-var	http = require('http'),
-		express = require('express'),
-		connect = require('connect');
-
+/**************
+ SYSTEM INCLUDES
+**************/
+var	http = require('http');
 var 	sys = require('sys');
-
-var 	app = express.createServer();
-
 var	async = require('async');
+var 	sanitizer = require('sanitizer');
+var 	express = require('express');
 
+/**************
+ LOCAL INCLUDES
+**************/
 var	rooms	= require('./lib/rooms.js');
 var	data	= require('./lib/data.js').db;
 
-var 	sanitizer = require('sanitizer');
-
+/**************
+ GLOBALS
+**************/
 //Map of sids to user_names
 var sids_to_user_names = [];
 
-app.configure( function(){
-	app.use(express.static(__dirname + '/client'));
-	app.use(express.bodyParser());
-	//app.use(express.cookieParser());
+/**************
+ SETUP EXPRESS
+**************/
+var app = express();
 
-	//Cookies are not really needed... but may be in the future?
-	app.use(express.cookieParser());
-	app.use(
-		express.session({
-			key: "scrumscrum-cookie",
-			secret: "kookoorikoo",
-//			store: session_store,
-			cookie: { path: '/', httpOnly: true, maxAge: 14400000 }
-		})
-	);
+app.use(express.static(__dirname + '/client'));
 
+var server = require('http').Server(app);
+var port = process.argv[2] || 8080;
+server.listen(port);
 
-});
+console.log('Server running at http://127.0.0.1:' + port + '/');
+
+/**************
+ ROUTES
+**************/
 
 app.get('/', function(req, res) {
 
@@ -44,81 +45,40 @@ app.get('/', function(req, res) {
 
 app.get('/demo', function(req, res) {
 	res.render('index.jade', {
-		locals: {pageTitle: 'scrumblr - demo', demo: true}
+		pageTitle: 'scrumblr - demo',
+		demo: true
 	});
 });
 
 app.get('/:id', function(req, res){
-
 	res.render('index.jade', {
-		locals: {pageTitle: ('scrumblr - ' + req.params.id) }
+		pageTitle: ('scrumblr - ' + req.params.id)
 	});
 });
 
-//SETUP ROUTES
-app.post('/edit-card/:id', function(req, res){
-    //do nothing
-	res.send(req.body.value);
-});
+/**************
+ SOCKET.I0
+**************/
+var io = require('socket.io')(server);
 
-app.post('/edit-column', function(req, res) {
-	//do nothing
-	res.send(req.body.value);
-});
-
-app.listen(process.argv[2] || 8124);
-
-//I limit the number of potential transports because xhr was causing trouble
-//with frequent disconnects
-var socketio_options = {
-	transports: ['websocket', 'flashsocket', 'htmlfile', 'jsonp-polling']
-};
-// socket.io SETUP
-var io = require('socket.io').listen(app);
-io.configure(function () {
-  io.set('transports', [
-      'websocket'
-    , 'flashsocket'
-    , 'htmlfile'
-//    , 'xhr-polling'
-    , 'jsonp-polling'
-  ]);
-
-  io.set('log level', 1); 
-});
 io.sockets.on('connection', function (client) {
-	// new client is here!
-	//console.dir(client.request.headers);
-		//
-		// var cookie_string = client.request.headers.cookie;
-		// var parsed_cookies = connect.utils.parseCookie(cookie_string);
-		// console.log('parsed:'); console.dir(parsed_cookies);
-		// var connect_sid = parsed_cookies['scrumscrum-sid'];
-		// if (connect_sid) {
-		//   session_store.get(connect_sid, function (error, session) {
-		// 	 console.log('cookie:');
-		//     console.dir(session);
-		//   });
-		// }
-
-//santizes text
-function scrub( text ) {
-	if (typeof text != "undefined" && text !== null)
-	{
-	
-		//clip the string if it is too long
-		if (text.length > 65535)
+	//sanitizes text
+	function scrub( text ) {
+		if (typeof text != "undefined" && text !== null)
 		{
-			text = text.substr(0,65535);
+			//clip the string if it is too long
+			if (text.length > 65535)
+			{
+				text = text.substr(0,65535);
+			}
+			
+			return sanitizer.sanitize(text);
 		}
-	
-		return sanitizer.sanitize(text);
+		else
+		{
+			return null;
+		}
 	}
-	else
-	{
-		return null;
-	}
-}	
 	
 	
 	
@@ -331,11 +291,9 @@ function scrub( text ) {
 });
 
 
-
-
-
-
-
+/**************
+ FUNCTIONS
+**************/
 function initClient ( client )
 {
 	//console.log ('initClient Started');
@@ -504,6 +462,10 @@ function cleanAndInitializeDemoRoom()
 }
 //
 
+/**************
+ SETUP DATABASE ON FIRST RUN
+**************/
+// (runs only once on startup)
 var db = new data(function() {
 	cleanAndInitializeDemoRoom();
 });

@@ -1,63 +1,72 @@
-- if (locals.demo)
-	div.notice-bar this is a demo board. to make a private board, go to <a href="http://scrumblr.ca">scrumblr.ca</a>
+extends layout
 
-h1 <a href="http://scrumblr.ca">scrumblr</a> by <a href="http://aliasaria.ca">aliasaria</a>
+block body
+	- if (locals.demo)
+		div.notice-bar this is a demo board. to make a private board, go to <a href="http://scrumblr.ca">scrumblr.ca</a>
 
-div.board-outline
-	div#board
-		div#board-doodles
-		image#marker(src='/images/marker.png')
-		image#eraser(src='/images/eraser.png')
-	
+	//div.config
+	//	i.fa.fa-cog.fa-lg.faded-icon
+
+	h1 <a href="http://scrumblr.ca">scrumblr</a> by <a href="http://aliasaria.ca">aliasaria</a>
+
+	div.board-outline
+		div#board
+			div#board-doodles
+			image#marker(src='/images/marker.png')
+			image#eraser(src='/images/eraser.png')
 		
-		table#board-table.board-table
-			tr
-				td#icon-col(width='1%')
-					image#add-col.col-icon(width='20', height='20', src='/images/icons/iconic/raster/black/plus_alt_32x32.png')
-					image#delete-col.col-icon(width='20', height='20', src='/images/icons/iconic/raster/black/minus_alt_32x32.png')
-
-div.buttons	
-	image#create-card.bottom-icon(width="24", height="24", src="/images/icons/iconic/raster/black/plus_alt_24x24.png")
-	image#smallify.bottom-icon(width="23",height="23",src="/images/icons/cc/black/png/zoom_icon&24.png")
-
-div.stickers
-	div.sticker#sticker-red
-		image(src="/images/stickers/sticker-red.png")
-	div.sticker#sticker-blue
-		image(src="/images/stickers/sticker-blue.png")
-	div.sticker#sticker-yellow
-		image(src="/images/stickers/sticker-yellow.png")
-	div.sticker#sticker-green
-		image(src="/images/stickers/sticker-green.png")
-	br
-	div.sticker#sticker-pink
-		image(src="/images/stickers/sticker-pink.png")
-	div.sticker#sticker-lightblue
-		image(src="/images/stickers/sticker-lightblue.png")
-	div.sticker#sticker-orange
-		image(src="/images/stickers/sticker-orange.png")
-	div.sticker#sticker-purple
-		image(src="/images/stickers/sticker-purple.png")
-	br
-	div.sticker#nosticker
-		image(src="/images/stickers/sticker-deletestar.png")
-	//br
-	//div.sticker#sticker-gold
-	//	image(src="/images/stickers/sticker-gold.png")
-	//div.sticker#sticker-bluestar
-	//	image(src="/images/stickers/sticker-bluestar.png")
-	//div.sticker#sticker-silverstar
-	//	image(src="/images/stickers/sticker-silverstar.png")
-	//div.sticker#sticker-redstar
-	//	image(src="/images/stickers/sticker-redstar.png")
+			
+			table#board-table.board-table
+				tr
+					td#icon-col(width='1%')
+						image#add-col.col-icon(width='20', height='20', src='/images/icons/iconic/raster/black/plus_alt_32x32.png')
+						image#delete-col.col-icon(width='20', height='20', src='/images/icons/iconic/raster/black/minus_alt_32x32.png')
 
 
-div.names
-	p connected:
-	//image#user-icon(src="/images/icons/cc/black/png/user_icon&16.png")
-	input#yourname-input
-	span.you-text\(you)
-	ul#names-ul
+	div.buttons
+		i#create-card.fa.fa-plus-circle.fa-2x.bottom-icon
+		i#smallify.fa.fa-expand.fa-2x.bottom-icon
+
+	div.stickers
+		div.sticker#sticker-red
+			image(src="/images/stickers/sticker-red.png")
+		div.sticker#sticker-blue
+			image(src="/images/stickers/sticker-blue.png")
+		div.sticker#sticker-yellow
+			image(src="/images/stickers/sticker-yellow.png")
+		div.sticker#sticker-green
+			image(src="/images/stickers/sticker-green.png")
+		br
+		div.sticker#sticker-pink
+			image(src="/images/stickers/sticker-pink.png")
+		div.sticker#sticker-lightblue
+			image(src="/images/stickers/sticker-lightblue.png")
+		div.sticker#sticker-orange
+			image(src="/images/stickers/sticker-orange.png")
+		div.sticker#sticker-purple
+			image(src="/images/stickers/sticker-purple.png")
+		br
+		div.sticker#nosticker
+			image(src="/images/stickers/sticker-deletestar.png")
+		//br
+		//div.sticker#sticker-gold
+		//	image(src="/images/stickers/sticker-gold.png")
+		//div.sticker#sticker-bluestar
+		//	image(src="/images/stickers/sticker-bluestar.png")
+		//div.sticker#sticker-silverstar
+		//	image(src="/images/stickers/sticker-silverstar.png")
+		//div.sticker#sticker-redstar
+		//	image(src="/images/stickers/sticker-redstar.png")
 
 
-//<div style="width: 980px; height: 450px; border: solid 2px; opacity:.1; margin-top: 100px"> this will be the backlog that only appears on drag or perhaps not at all</div>
+	div.names
+		p connected:
+		//image#user-icon(src="/images/icons/cc/black/png/user_icon&16.png")
+		input#yourname-input
+		span.you-text (you)
+		ul#names-ul
+
+	//div.trash
+	//	i.fa.fa-trash-o.fa-lg.faded-icon
+
+	//<div style="width: 980px; height: 450px; border: solid 2px; opacity:.1; margin-top: 100px"> this will be the backlog that only appears on drag or perhaps not at all</div>

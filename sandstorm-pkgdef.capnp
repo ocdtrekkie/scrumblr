@@ -17,7 +17,9 @@ const pkgdef :Spk.PackageDefinition = (
     # This manifest is included in your app package to tell Sandstorm
     # about your app.
 
-    appVersion = 2,  # Increment this for every release.
+    appTitle = (defaultText = "Scrumblr"),
+    appVersion = 3,  # Increment this for every release.
+    appMarketingVersion = (defaultText = "0.3"),
 
     actions = [
       # Define your "new document" handlers here.

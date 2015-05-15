@@ -273,18 +273,19 @@ function drawNewCard(id, text, x, y, rot, colour, sticker, animationspeed)
 		}
 	);
 	
-	card.children('.content').editable( "/edit-card/" + id,
-		{
-			style   : 'inherit',
-			cssclass   : 'card-edit-form',
-			type      : 'textarea',
-			placeholder   : 'Double Click to Edit.',
-			onblur: 'submit',
-			xindicator: '<img src="/images/ajax-loader.gif">',
-			event: 'dblclick', //event: 'mouseover'
-			callback: onCardChange
-		}
-	);
+	card.children('.content').editable(function(value, settings) { 
+		onCardChange( id, value );
+		return(value);
+	}, { 
+		type    : 'textarea',
+	    submit  : 'OK',
+		style   : 'inherit',
+		cssclass   : 'card-edit-form',
+		type      : 'textarea',
+		placeholder   : 'Double Click to Edit.',
+		onblur: 'submit',
+		event: 'dblclick', //event: 'mouseover'
+	});
 	
 	//add applicable sticker
 	if (sticker != null)
@@ -292,15 +293,9 @@ function drawNewCard(id, text, x, y, rot, colour, sticker, animationspeed)
 }
 
 
-function onCardChange( text, result )
-{
-	var path = result.target;
-	//e.g. /edit-card/card46156244
-	var id = path.slice(11);
-	
-	sendAction('editCard', { id: id, value: text });
-	
-	
+function onCardChange( id, text )
+{	
+	sendAction('editCard', { id: id, value: text });	
 }
 
 function moveCard(card, position) {
@@ -395,7 +390,6 @@ function initCards( cardArray )
 // cols
 //----------------------------------
 
-
 function drawNewColumn (columnName)
 {	
 	var cls = "col";
@@ -404,42 +398,51 @@ function drawNewColumn (columnName)
 		cls = "col first";
 	}
 	
-	$('#icon-col').before('<td class="' + cls + '" width="10%" style="display:none"><h2 id="col1" class="editable">' + columnName + '</h2></td>');
-	
-	$('.editable').editable( "/edit-column",
-		{
-			style   : 'inherit',
-			cssclass   : 'card-edit-form',
-			type      : 'textarea',
-			placeholder   : 'New',
-			onblur: 'submit',
-			width: '',
-			height: '',
-			xindicator: '<img src="/images/ajax-loader.gif">',
-			event: 'dblclick', //event: 'mouseover'
-			callback: onColumnChange
-		}
-	);
+	$('#icon-col').before('<td class="' + cls + '" width="10%" style="display:none"><h2 id="col-' + (totalcolumns+1) + '" class="editable">' + columnName + '</h2></td>');
+
+	$('.editable').editable(function(value, settings) { 
+		onColumnChange( this.id, value );
+		return(value);
+	}, { 
+		style   : 'inherit',
+		cssclass   : 'card-edit-form',
+		type      : 'textarea',
+		placeholder   : 'New',
+		onblur: 'submit',
+		width: '',
+		height: '',
+		xindicator: '<img src="/images/ajax-loader.gif">',
+		event: 'dblclick', //event: 'mouseover'
+	});
 	
 	$('.col:last').fadeIn(1500);
 	
 	totalcolumns ++;
 }
 
-function onColumnChange( text, settings )
+function onColumnChange( id, text )
 {
 	var names = Array();
-	
-	//Get the names of all the columns
+
+	//console.log(id + " " + text );
+
+	//Get the names of all the columns right from the DOM
 	$('.col').each(function() {
-		names.push(
-			$(this).text()
-			);
+		
+		//get ID of current column we are traversing over
+		var thisID = $(this).children("h2").attr('id');
+
+		if (id == thisID)
+		{
+			names.push( text );
+		}
+		else
+		{
+			names.push( $(this).text() );	
+		}
 	});
 	
 	updateColumns(names);
-	
-	
 }
 
 function displayRemoveColumn()
@@ -515,11 +518,7 @@ function initColumns( columnArray )
 			column
 		);
 	}
-
-
 }
-
-
 
 
 function changeThemeTo( theme )
