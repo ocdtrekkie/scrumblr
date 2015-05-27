@@ -2,20 +2,22 @@ doctype html
 html(lang="en")
 	head
 		<!-- SCRIPTS -->
-		<script src="/lib/jquery-1.5.1.min.js"></script> 
-		
-		<script src="/socket.io/socket.io.js"></script>
 
+		<!-- jQuery -->
+		<script src="/lib/jquery-1.5.1.min.js"></script>
 		<!-- <script src="/lib/jquery-ui/js/jquery-ui-1.8.9.custom.min.js"></script> -->
 		<script src="/lib/jquery-ui/development-bundle/ui/jquery-ui-1.8.9.custom.js"></script>
 		
+		<!-- External Scripts -->
 		<script src="/lib/jquery.ui.touch-punch.min.js"></script>
-		
-		<script src="/lib/jquery.jeditable.js"></script> 
-		
-		<script src="/script.js"></script> 
-		
-		<script src="/lib/jquery.blockUI.js"></script> 
+		<script src="/lib/jquery.jeditable.js"></script>
+		<script src="/lib/jquery.blockUI.js"></script>
+
+		<!-- Socket.IO -->
+		<script src="/socket.io/socket.io.js"></script>
+
+		<!-- ** My Script ** -->
+		<script src="/script.js"></script>
 
 		<!-- STYLES -->
 		<link rel="stylesheet" type="text/css" href="/css/style.css" />
@@ -26,6 +28,6 @@ html(lang="en")
 		<link href='/css/covered-by-your-grace.css' rel='stylesheet' type='text/css'>
 
 		title= locals.pageTitle
-	
+
 	body
 		block body
