@@ -40,6 +40,7 @@ client/images/stickers/sticker-yellow.png
 client/images/white-card.png
 client/images/yellow-card.png
 client/lib/jquery-1.5.1.min.js
+client/lib/jquery-ui/development-bundle/ui/jquery-ui-1.11.1.js
 client/lib/jquery-ui/development-bundle/ui/jquery-ui-1.8.9.custom.js
 client/lib/jquery.blockUI.js
 client/lib/jquery.jeditable.js
