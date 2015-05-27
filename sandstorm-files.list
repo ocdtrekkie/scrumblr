@@ -7,11 +7,13 @@ bin/sh
 client/css/bg/concrete_wall_2_2.png
 client/css/bigcards.css
 client/css/covered-by-your-grace.css
+client/css/font-awesome-4.1.0.min.css
 client/css/fonts/coveredbyyourgrace.woff
 client/css/fonts/rock-salt.woff
 client/css/images/ui-icons_222222_256x240.png
 client/css/rock-salt.css
 client/css/scribbles2.png
+client/css/smallcards.css
 client/css/style.css
 client/images/ajax-loader.gif
 client/images/blue-card.png
@@ -39,6 +41,7 @@ client/images/stickers/sticker-silverstar.png
 client/images/stickers/sticker-yellow.png
 client/images/white-card.png
 client/images/yellow-card.png
+client/lib/jquery-1.11.0.min.js
 client/lib/jquery-1.5.1.min.js
 client/lib/jquery-ui/development-bundle/ui/jquery-ui-1.11.1.js
 client/lib/jquery-ui/development-bundle/ui/jquery-ui-1.8.9.custom.js
