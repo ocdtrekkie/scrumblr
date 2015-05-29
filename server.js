@@ -45,11 +45,12 @@ var io = require('socket.io')(server);
 
 app.get('/', function(req, res) {
 
-	var connected = io.sockets.connected;
-	clientsCount = Object.keys(connected).length;
+	sandstormUsername = req.header('x-sandstorm-username');
+
+	res.cookie('scrumscrum-username', sandstormUsername);
 
 	res.render('index.jade', {
-		locals: {pageTitle: ('scrumblr - ' + req.params.id) }
+		locals: { pageTitle: ('scrumblr - ' + req.params.id) }
 	});
 });
 
@@ -108,7 +109,6 @@ io.sockets.on('connection', function (client) {
 			case 'joinRoom':
 
 				joinRoom(client, message.data, function(clients) {
-
 						client.json.send( { action: 'roomAccept', data: '' } );
 
 				});
