@@ -761,7 +761,7 @@ $(function() {
     // );
     //
 
-    var user_name = getCookie('scrumscrum-username');
+    var user_name = decodeURIComponent(getCookie('scrumscrum-username'));
 
 
 
