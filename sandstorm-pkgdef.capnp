@@ -19,7 +19,7 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "Scrumblr"),
 
-    appVersion = 4,  # Increment this for every release.
+    appVersion = 5,  # Increment this for every release.
 
     appMarketingVersion = (defaultText = "0.4"),
 
@@ -63,7 +63,7 @@ const pkgdef :Spk.PackageDefinition = (
        shortDescription = (defaultText = "Simple kanban board"),
 
        screenshots = [
-         (width = 1920, height = 1080, png = embed "sandstorm-screenshot.png")
+         (width = 1439, height = 889, png = embed "sandstorm-screenshot.png")
        ],
 
        changeLog = (defaultText = embed "CHANGELOG.md"),
