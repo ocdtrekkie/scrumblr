@@ -18,23 +18,56 @@ const pkgdef :Spk.PackageDefinition = (
     # about your app.
 
     appTitle = (defaultText = "Scrumblr"),
-    appVersion = 3,  # Increment this for every release.
-    appMarketingVersion = (defaultText = "0.3"),
+
+    appVersion = 4,  # Increment this for every release.
+
+    appMarketingVersion = (defaultText = "0.4"),
 
     actions = [
       # Define your "new document" handlers here.
       ( title = (defaultText = "New Scrumblr Board"),
+        nounPhrase = (defaultText = "board"),
         command = .myCommand
         # The command to run when starting for the first time. (".myCommand"
         # is just a constant defined at the bottom of the file.)
       )
     ],
 
-    continueCommand = .myCommand
+    continueCommand = .myCommand,
     # This is the command called to start your app back up after it has been
     # shut down for inactivity. Here we're using the same command as for
     # starting a new instance, but you could use different commands for each
     # case.
+
+    metadata = (
+       icons = (
+         appGrid = (svg = embed "app-graphics/scrumblr-128.svg"),
+         grain = (svg = embed "app-graphics/scrumblr-24.svg"),
+         market = (png = (dpi1x = embed "app-graphics/scrumblr-150.png", dpi2x = embed "app-graphics/scrumblr-150.png")),
+         marketBig = (png = (dpi1x = embed "app-graphics/scrumblr-300.png", dpi2x = embed "app-graphics/scrumblr-300.png")),
+       ),
+
+       website = "http://scrumblr.ca/",
+       codeUrl = "https://github.com/ocdtrekkie/scrumblr",
+       license = (openSource = gpl3),
+       categories = [productivity],
+
+       author = (
+         contactEmail = "inbox@jacobweisz.com",
+         pgpSignature = embed "pgp-signature",
+         upstreamAuthor = "Ali Asaria",
+       ),
+       pgpKeyring = embed "pgp-keyring",
+
+       description = (defaultText = embed "description.md"),
+       shortDescription = (defaultText = "Simple kanban board"),
+
+       screenshots = [
+         (width = 1920, height = 1080, png = embed "sandstorm-screenshot.png")
+       ],
+
+       changeLog = (defaultText = embed "CHANGELOG.md"),
+    ),
   ),
 
   sourceMap = (
