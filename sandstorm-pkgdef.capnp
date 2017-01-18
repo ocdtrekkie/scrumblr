@@ -19,9 +19,9 @@ const pkgdef :Spk.PackageDefinition = (
 
     appTitle = (defaultText = "Scrumblr"),
 
-    appVersion = 5,  # Increment this for every release.
+    appVersion = 6,  # Increment this for every release.
 
-    appMarketingVersion = (defaultText = "0.4"),
+    appMarketingVersion = (defaultText = "0.5"),
 
     actions = [
       # Define your "new document" handlers here.
