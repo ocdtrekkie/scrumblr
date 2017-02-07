@@ -61,9 +61,10 @@ block body
 
 	div.export
 		h3 Export board
-		button#export-txt Text format
-		button#export-csv CSV format
-		button#export-json JSON format (for import in Scrumblr)
+		div
+			button#export-txt Text format
+			button#export-csv CSV format
+			button#export-json JSON format (for import in Scrumblr)
 
 	div.import
 		h3 Import board
@@ -74,9 +75,10 @@ block body
 
 	div.revisions
 		h3 Revisions
-		button#create-revision Create a revision
 		div
-			ul#revisions-list
+			button#create-revision Create a revision
+			div
+				ul#revisions-list
 
 	//div.trash
 	//	i.fa.fa-trash-o.fa-lg.faded-icon

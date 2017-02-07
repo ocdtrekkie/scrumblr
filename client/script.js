@@ -916,6 +916,21 @@ $(function() {
         containment: 'parent'
     });
 
+    $( ".export" ).accordion({
+        collapsible: true,
+        active: false
+    });
+
+    $( ".import" ).accordion({
+        collapsible: true,
+        active: false
+    });
+
+    $( ".revisions" ).accordion({
+        collapsible: true,
+        active: false
+    });
+
     $('#export-txt').click(function() {
         socket.json.send({
             action: 'exportTxt',
