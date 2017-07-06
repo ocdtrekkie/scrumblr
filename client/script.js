@@ -8,7 +8,7 @@ var keyTrap = null;
 var baseurl = location.pathname.substring(0, location.pathname.lastIndexOf('/'));
 var socket = io.connect({path: baseurl + "/socket.io"});
 
-marked.setOptions({linksInNewTab: true});
+marked.setOptions({linksInNewTab: true, sanitize: true});
 
 moment.locale(navigator.language || navigator.languages[0]);
 
