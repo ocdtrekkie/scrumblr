@@ -8,7 +8,12 @@ var keyTrap = null;
 var baseurl = location.pathname.substring(0, location.pathname.lastIndexOf('/'));
 var socket = io.connect({path: baseurl + "/socket.io"});
 
-marked.setOptions({linksInNewTab: true});
+marked.setOptions({sanitize: true});
+
+// open links in a new tab (added for the Sandstorm version)
+function markedCallback(err, content) { 
+    return content.replace(/<a href="(.*?)"/gm, '<a href="$1" target="_blank" rel="noopener noreferrer"');
+}
 
 moment.locale(navigator.language || navigator.languages[0]);
 
@@ -113,7 +118,7 @@ function getMessage(m) {
 
         case 'editCard':
             $("#" + data.id).children('.content:first').attr('data-text', data.value);
-            $("#" + data.id).children('.content:first').html(marked(data.value));
+            $("#" + data.id).children('.content:first').html(marked(data.value, callback=markedCallback));
             break;
 
         case 'initColumns':
@@ -196,7 +201,7 @@ function drawNewCard(id, text, x, y, rot, colour, sticker, animationspeed) {
         colour + '-card.png">\
 	<div id="content:' + id +
         '" class="content stickertarget droppable" data-text="">' +
-        marked(text) + '</div><span class="filler"></span>\
+        marked(text, callback=markedCallback) + '</div><span class="filler"></span>\
 	</div>';
 
     var card = $(h);
@@ -314,7 +319,7 @@ function drawNewCard(id, text, x, y, rot, colour, sticker, animationspeed) {
     card.children('.content').editable(function(value, settings) {
         $("#" + id).children('.content:first').attr('data-text', value);
         onCardChange(id, value);
-        return (marked(value));
+        return (marked(value, callback=markedCallback));
     }, {
         type: 'textarea',
         data: function() {
